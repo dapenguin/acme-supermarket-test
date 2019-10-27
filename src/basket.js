@@ -40,7 +40,9 @@ class Basket {
 			const pricingRule = this.pricingRules.products.find(({code}) => code === itemCode);
 
 			if (!pricingRule) {
-				throw new Error('Error calculating the basket total.');
+				throw new Error(
+					`Error calculating the basket total. Pricing rule for ${itemCode} could not be found.`
+				);
 			}
 
 			const { unitPrice, promotion } = pricingRule;
