@@ -2,6 +2,53 @@
 
 Create a solution for the ACME Supermarket problem.
 
+## Anthony's Notes
+
+### Setup
+
+```
+npm install
+```
+
+### Usage
+
+To create a new basket instance:
+
+```
+const basket = new Basket(pricingRules);
+```
+
+To add a product to the basket, use the `add()` method passing in the product code as the only parameter:
+
+```
+basket.add('CF1');
+```
+
+To get the basket total, use the `total()` method.
+
+```
+const price = basket.total();
+```
+
+### Running the tests
+
+```
+npm test
+```
+
+### Pricing Rules Model
+
+I initially started thinking about how I would go about having product and promotion rules as separate objects within the pricing rules. However, I opted to have the promotion rules specified for each product as this felt like a simpler way.
+
+Also, I realise that the product name is never used. There would likely be a separate object for product details like this.
+
+### What else would I have done if I spent more time?
+
+ - Make the constructor defensive, requiring that `pricingRules` be passed in to the constructor.
+ - The tests are for the specific scenarios mentioned in the Readme. I would have liked to have at least added individual tests for the `calculateDiscount()`, `calculateMinItemsDiscount()` and `calculatePerItemDiscount()` methods.
+ - Be a bit more consistent or thoughtful with some of my naming.
+ - Ensure that the total is always output to twodecimal places.
+
 ## Description of the problem
 
 ACME's quest for global domination has prompted us to open a supermarket – we sell only three products:
