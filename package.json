@@ -22,5 +22,8 @@
   "homepage": "https://github.com/ag-digital/acme-supermarket-test#readme",
   "devDependencies": {
     "jest": "^24.9.0"
+  },
+  "engines": {
+    "node": "^8.10.0"
   }
 }
