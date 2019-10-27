@@ -101,6 +101,41 @@ class Basket {
 	}
 
 	/**
+	 * Calculates the discount for a product in the basket.
+	 * @param {number} quantityInBasket The quantity of the product that is in
+	 *     the basket.
+	 * @param {PromotionDetails} promotion The details of the product promotion.
+	 * @returns {number} The amount of discount to be applied. If the promotion
+	 *     type is not recognised, then zero is returned.
+	 */
+	calculateDiscount(quantityInBasket, promotion) {
+		const { type, qualifyingQuantity, discount } = promotion;
+		let itemDiscount = 0;
+
+		switch (type) {
+			case 'MIN_X_ITEMS':
+				itemDiscount = this.calculateMinItemsDiscount(
+					quantityInBasket,
+					qualifyingQuantity,
+					discount,
+				);
+				break;
+			case 'PER_X_ITEMS':
+				itemDiscount = this.calculatePerItemDiscount(
+					quantityInBasket,
+					qualifyingQuantity,
+					discount,
+				);
+				break;
+			default:
+				itemDiscount = 0;
+				break;
+		}
+
+		return itemDiscount;
+	}
+
+	/**
 	 * Calculates and returns the basket total in GBP.
 	 * @returns {string} The total of the basket, formatted for the currency
 	 *     used.
@@ -117,32 +152,7 @@ class Basket {
 
 			const { unitPrice, promotion } = pricingRule;
 			const itemTotal = quantity * unitPrice;
-
-			let itemDiscount = 0;
-
-			if (promotion){
-				const { type, qualifyingQuantity, discount } = promotion;
-
-				switch (type) {
-					case 'MIN_X_ITEMS':
-						itemDiscount = this.calculateMinItemsDiscount(
-							quantity,
-							qualifyingQuantity,
-							discount,
-						);
-						break;
-					case 'PER_X_ITEMS':
-						itemDiscount = this.calculatePerItemDiscount(
-							quantity,
-							qualifyingQuantity,
-							discount,
-						);
-						break;
-					default:
-						itemDiscount = 0;
-						break;
-				}
-			}
+			const itemDiscount = promotion ? this.calculateDiscount(quantity, promotion) : 0;
 
 			return total + (itemTotal - itemDiscount);
 		}, 0);
