@@ -47,7 +47,6 @@ Also, I realise that the product name is never used. There would likely be a sep
  - Make the constructor defensive, requiring that `pricingRules` be passed in to the constructor.
  - The tests are for the specific scenarios mentioned in the Readme. I would have liked to have at least added individual tests for the `calculateDiscount()`, `calculateMinItemsDiscount()` and `calculatePerItemDiscount()` methods.
  - Be a bit more consistent or thoughtful with some of my naming.
- - Ensure that the total is always output to two decimal places.
 
 ## Description of the problem
 
