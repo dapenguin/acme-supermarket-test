@@ -157,7 +157,7 @@ class Basket {
 			return total + (itemTotal - itemDiscount);
 		}, 0);
 
-		return `£${basketTotal}`;
+		return `£${basketTotal.toFixed(2)}`;
 	}
 }
 
